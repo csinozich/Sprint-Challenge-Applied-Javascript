@@ -1,44 +1,39 @@
 class Carousel {
   constructor(element) {
     this.element = element;
-    this.index = 1;
-    this.place = this.element.dataset.place;
-    this.image = document.querySelectorAll('.carImage');
-    this.image[0].style.display = 'flex';
-    this.left = document.querySelector('.left-button');
-    this.right = document.querySelector('.right-button');
-    this.left.addEventListener('click', () => this.leftClick());
-    this.right.addEventListener('click', () => this.rightClick())
+    this.index = 0;
+    this.image = element.querySelectorAll('.carImage');
+    this.left = element.querySelector('.left-button');
+    this.right = element.querySelector('.right-button');
+    this.left.addEventListener('click', () => this.leftClick(index));
+    this.right.addEventListener('click', () => this.rightClick(index));
+    this.image[0].style.display = 'block';
   }
 
-  rightClick() {
-    this.image.forEach(img => img.style.display = 'none');
-    const position = Array.from(this.image).length;
-    this.index +=1;
-    if (this.index >=5) {
-      this.index=1
-    }
-    else {
-     this.index = count;
-    }
-    this.image[this.position].style.display = 'flex';
+  currentImage() {
+    document.querySelectorAll('.carImage').forEach(img => img.style.display = 'none');
+    this.image[this.index].style.display = 'block';
   }
 
   leftClick() {
-    this.image.forEach(img => img.style.display = 'none');
-    const position = Array.from(this.image).length-1;
-    this.index -= 1;
-    if (this.index <= 0) {
-      this.index=4;
+    this.index--;
+    if(this.index < 0) {
+      this.index = this.image.length-1
     }
-    else {
-      this.index = position;
+    this.currentImage();
+  }
+
+  rightClick() {
+    this.index++;
+    if(this.index > 3) {
+      this.index = 0
     }
-    this.image[this.position].style.display = 'flex';
+    this.currentImage();
   }
 }
 
-let carousel = document.querySelector('.carousel');
+let carousel = document.querySelector('.carousel')
+Array.from(carousel).map(img => new Carousel(img));
 
 /* If You've gotten this far, you're on your own! Although we will give you some hints:
     1. You will need to grab a reference to the carousel, and in it grab the laft and right buttons
