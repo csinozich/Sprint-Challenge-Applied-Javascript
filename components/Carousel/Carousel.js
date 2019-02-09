@@ -3,6 +3,8 @@ class Carousel {
     this.element = element;
     this.index = 1;
     this.place = this.element.dataset.place;
+    this.image = document.querySelectorAll('.carImage');
+    this.image[0].style.display = 'flex';
     this.left = document.querySelector('.left-button');
     this.right = document.querySelector('.right-button');
     this.left.addEventListener('click', () => this.leftClick());
@@ -10,27 +12,29 @@ class Carousel {
   }
 
   rightClick() {
+    this.image.forEach(img => img.style.display = 'none');
+    const position = Array.from(this.image).length;
     this.index +=1;
     if (this.index >=5) {
       this.index=1
     }
-    this.element.querySelectorAll('.carImage').forEach(image => {
-      image.classList.toggle('active-image', false)
-    })
-    this.element.querySelector(`.carImage[data-place='${this.index}']`).classList.toggle('activeImage', true)
+    else {
+     this.index = count;
+    }
+    this.image[this.position].style.display = 'flex';
   }
 
   leftClick() {
+    this.image.forEach(img => img.style.display = 'none');
+    const position = Array.from(this.image).length-1;
     this.index -= 1;
     if (this.index <= 0) {
       this.index=4;
     }
     else {
-      this.element.querySelectorAll('.carImage').forEach(image => {
-        image.classList.toggle('active-image', false)
-      })
-      this.element.querySelector(`.carImage[data-place'${this.index}]`).classList.toggle('activeImage', true)
+      this.index = position;
     }
+    this.image[this.position].style.display = 'flex';
   }
 }
 
