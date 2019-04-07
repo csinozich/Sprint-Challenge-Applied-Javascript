@@ -22,7 +22,7 @@ You are going to create a Lambda Newspaper. Your job is going to be to add funct
 
 ![Working Sprint Challenge Gif](./Sprint-Challenge.gif 'Example of working project')
 
-In meeting the minimum viable product (MVP) specifications listed below, you should have a console full of correct responses to the problems given.
+In meeting the minimum viable product (MVP) specifications listed below, you should have a console full of correct responses to the problems given.//
 
 ## Self-Study Questions
 
